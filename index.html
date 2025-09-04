@@ -1,0 +1,428 @@
+<!DOCTYPE html>
+<html lang="en" class="bg-gray-900">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Astro Daily</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <style>
+        body {
+            font-family: 'Inter', sans-serif;
+        }
+        .card {
+            background-color: #1f2937; /* bg-gray-800 */
+            border: 1px solid #374151; /* border-gray-700 */
+            border-radius: 0.75rem; /* rounded-xl */
+            padding: 1.5rem; /* p-6 */
+            margin-bottom: 1.5rem; /* mb-6 */
+            box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.1), 0 4px 6px -2px rgba(0, 0, 0, 0.05);
+        }
+        .card-title {
+            font-size: 1.25rem; /* text-xl */
+            font-weight: 600; /* font-semibold */
+            color: #f9fafb; /* text-gray-50 */
+            margin-bottom: 1rem; /* mb-4 */
+            display: flex;
+            align-items: center;
+        }
+         .card-title svg {
+            margin-right: 0.75rem; /* mr-3 */
+            width: 1.5rem; /* w-6 */
+            height: 1.5rem; /* h-6 */
+        }
+        .skeleton {
+            background-color: #374151; /* bg-gray-700 */
+            border-radius: 0.5rem; /* rounded-lg */
+            animation: pulse 2s cubic-bezier(0.4, 0, 0.6, 1) infinite;
+        }
+        @keyframes pulse {
+            50% {
+                opacity: .5;
+            }
+        }
+        .btn {
+             display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            padding: 0.75rem 1.25rem;
+            font-weight: 500;
+            border-radius: 0.5rem;
+            transition: all 0.2s ease-in-out;
+            cursor: pointer;
+        }
+        .btn-primary {
+            background-color: #4f46e5; /* bg-indigo-600 */
+            color: white;
+        }
+         .btn-primary:hover {
+            background-color: #4338ca; /* bg-indigo-700 */
+        }
+         .btn-secondary {
+            background-color: #374151; /* bg-gray-700 */
+            color: #f3f4f6; /* text-gray-100 */
+         }
+        .btn-secondary:hover {
+            background-color: #4b5563; /* bg-gray-600 */
+        }
+        .answer-btn {
+            width: 100%;
+            text-align: left;
+            margin-bottom: 0.5rem; /* mb-2 */
+        }
+        .correct {
+            background-color: #16a34a !important; /* bg-green-600 */
+        }
+        .incorrect {
+            background-color: #dc2626 !important; /* bg-red-600 */
+        }
+    </style>
+</head>
+<body class="bg-gray-900 text-gray-300 antialiased">
+
+    <div class="max-w-2xl mx-auto p-4 md:p-6">
+
+        <!-- Header -->
+        <header class="text-center my-8">
+            <h1 class="text-4xl font-bold text-white tracking-tight">Astro Daily</h1>
+            <p class="text-indigo-400 mt-2">Your daily guide to the cosmos.</p>
+        </header>
+        
+        <!-- "Get Today's Update" button has been removed -->
+
+
+        <!-- Space News Update -->
+        <div class="card" id="news-card">
+            <h2 class="card-title">
+                <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="text-indigo-400">
+                  <path stroke-linecap="round" stroke-linejoin="round" d="M12 7.5h1.5m-1.5 3h1.5m-7.5 3h7.5m-7.5 3h7.5m3-9h3.375c.621 0 1.125.504 1.125 1.125V18a2.25 2.25 0 01-2.25 2.25M16.5 7.5V18a2.25 2.25 0 002.25 2.25M16.5 7.5V4.875c0-.621-.504-1.125-1.125-1.125H4.125C3.504 3.75 3 4.254 3 4.875V18a2.25 2.25 0 002.25 2.25h13.5M6 7.5h3v3H6v-3z" />
+                </svg>
+                Space News Update
+            </h2>
+            <div id="news-content">
+                <!-- Skeleton Loader -->
+                <div class="skeleton h-4 w-3/4 mb-3"></div>
+                <div class="skeleton h-4 w-full mb-3"></div>
+                <div class="skeleton h-4 w-5/6"></div>
+            </div>
+            <div id="news-sources" class="mt-4 text-xs text-gray-500"></div>
+        </div>
+
+        <!-- Mini Lesson of the Day -->
+        <div class="card" id="lesson-card">
+            <h2 class="card-title">
+                <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="text-indigo-400">
+                  <path stroke-linecap="round" stroke-linejoin="round" d="M12 6.042A8.967 8.967 0 006 3.75c-1.052 0-2.062.18-3 .512v14.25A8.987 8.987 0 016 18c2.305 0 4.408.867 6 2.292m0-14.25a8.966 8.966 0 016-2.292c1.052 0 2.062.18 3 .512v14.25A8.987 8.987 0 0018 18a8.967 8.967 0 00-6 2.292m0-14.25v14.25" />
+                </svg>
+                Mini Lesson of the Day
+            </h2>
+            <div id="lesson-content">
+                <!-- Skeleton Loader -->
+                <div class="skeleton h-4 w-1/2 mb-3"></div>
+                <div class="skeleton h-4 w-full mb-3"></div>
+                <div class="skeleton h-4 w-full mb-3"></div>
+                <div class="skeleton h-4 w-4/6"></div>
+            </div>
+        </div>
+
+        <!-- Question of the Day -->
+        <div class="card" id="question-card">
+            <h2 class="card-title">
+                <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="text-indigo-400">
+                  <path stroke-linecap="round" stroke-linejoin="round" d="M9.879 7.519c1.171-1.025 3.071-1.025 4.242 0 1.172 1.025 1.172 2.687 0 3.712-.203.179-.43.326-.67.442-.745.361-1.45.999-1.45 1.827v.75M21 12a9 9 0 11-18 0 9 9 0 0118 0zm-9 5.25h.008v.008H12v-.008z" />
+                </svg>
+                Question of the Day
+            </h2>
+            <div id="question-content">
+                <!-- Skeleton Loader -->
+                <div class="skeleton h-5 w-full mb-4"></div>
+                <div class="skeleton h-10 w-full mb-2"></div>
+                <div class="skeleton h-10 w-full mb-2"></div>
+                <div class="skeleton h-10 w-full"></div>
+            </div>
+            <div id="question-feedback" class="mt-4 font-semibold text-center"></div>
+        </div>
+        
+        <footer class="text-center text-xs text-gray-600 py-4">
+            <p>Powered by Gemini. Content is for informational purposes only.</p>
+        </footer>
+
+    </div>
+
+    <script>
+        const newsContent = document.getElementById('news-content');
+        const newsSources = document.getElementById('news-sources');
+        const lessonContent = document.getElementById('lesson-content');
+        const questionContent = document.getElementById('question-content');
+        const questionFeedback = document.getElementById('question-feedback');
+        // The following constants for the refresh button have been removed.
+        // const refreshBtn = document.getElementById('refreshBtn');
+        // const refreshIcon = document.getElementById('refresh-icon');
+        // const loadingSpinner = document.getElementById('loading-spinner');
+
+        const apiKey = ""; // Leave as-is
+
+        // --- Skeleton Loader Functions ---
+        const showSkeleton = (element) => {
+            let skeletonHtml = '';
+            if (element === newsContent) {
+                skeletonHtml = `
+                    <div class="skeleton h-4 w-3/4 mb-3"></div>
+                    <div class="skeleton h-4 w-full mb-3"></div>
+                    <div class="skeleton h-4 w-full mb-3"></div>
+                    <div class="skeleton h-4 w-5/6"></div>`;
+            } else if (element === lessonContent) {
+                skeletonHtml = `
+                    <div class="skeleton h-4 w-1/2 mb-3"></div>
+                    <div class="skeleton h-4 w-full mb-3"></div>
+                    <div class="skeleton h-4 w-full mb-3"></div>
+                    <div class="skeleton h-4 w-full mb-3"></div>
+                    <div class="skeleton h-4 w-4/6"></div>`;
+            } else if (element === questionContent) {
+                skeletonHtml = `
+                    <div class="skeleton h-5 w-full mb-4"></div>
+                    <div class="skeleton h-10 w-full mb-2"></div>
+                    <div class="skeleton h-10 w-full mb-2"></div>
+                    <div class="skeleton h-10 w-full"></div>`;
+            }
+            element.innerHTML = skeletonHtml;
+        };
+        
+        // The setLoadingState function is no longer needed and has been removed.
+        
+        // --- Gemini API Call ---
+        // Updated to include an automatic retry mechanism with exponential backoff for more robust API calls.
+        async function callGemini(systemPrompt, userQuery, useGrounding = false) {
+            const model = 'gemini-2.5-flash-preview-05-20';
+            const apiUrl = `https://generativelanguage.googleapis.com/v1beta/models/${model}:generateContent?key=${apiKey}`;
+            const maxRetries = 3;
+            let delay = 1000; // 1 second initial delay
+
+            const payload = {
+                contents: [{ parts: [{ text: userQuery }] }],
+                systemInstruction: {
+                    parts: [{ text: systemPrompt }]
+                },
+                generationConfig: {
+                    responseMimeType: useGrounding ? null : "application/json",
+                }
+            };
+
+            if (useGrounding) {
+                payload.tools = [{ "google_search": {} }];
+            }
+            
+            if (!useGrounding) {
+                 payload.generationConfig.responseSchema = {
+                    type: "OBJECT",
+                    properties: {
+                        lessonTitle: { type: "STRING" },
+                        lessonBody: { type: "STRING" },
+                        question: { type: "STRING" },
+                        options: { 
+                            type: "ARRAY",
+                            items: { type: "STRING" }
+                        },
+                        answerIndex: { type: "INTEGER" },
+                        explanation: { type: "STRING" }
+                    },
+                     required: ["lessonTitle", "lessonBody", "question", "options", "answerIndex", "explanation"]
+                };
+            }
+
+            for (let attempt = 1; attempt <= maxRetries; attempt++) {
+                try {
+                    const response = await fetch(apiUrl, {
+                        method: 'POST',
+                        headers: { 'Content-Type': 'application/json' },
+                        body: JSON.stringify(payload)
+                    });
+
+                    if (response.ok) {
+                        return await response.json(); // Success
+                    }
+                    
+                    // Don't retry for client-side errors (e.g., bad request 4xx)
+                    if (response.status >= 400 && response.status < 500) {
+                        console.error(`API call failed with client error ${response.status}. Aborting retries.`);
+                        return null;
+                    }
+
+                    // For server-side errors (5xx) or network issues, throw to trigger a retry
+                    throw new Error(`API call failed with status: ${response.status}`);
+
+                } catch (error) {
+                    console.error(`Attempt ${attempt} failed: ${error.message}`);
+                    if (attempt === maxRetries) {
+                        console.error("All retries failed.");
+                        return null; // Return null after the last failed attempt
+                    }
+                    // Wait for the delay period before the next attempt
+                    await new Promise(res => setTimeout(res, delay));
+                    delay *= 2; // Double the delay for the next retry (exponential backoff)
+                }
+            }
+            return null;
+        }
+
+        // --- Content Rendering Functions ---
+
+        function renderNews(data) {
+            const candidate = data?.candidates?.[0];
+            if (!candidate || !candidate.content?.parts?.[0]?.text) {
+                newsContent.innerHTML = `<p class="text-red-400">Could not load news. Please try again.</p>`;
+                newsSources.innerHTML = '';
+                return;
+            }
+
+            const text = candidate.content.parts[0].text;
+            // Simple markdown to HTML
+            const formattedText = text
+                .replace(/\*\*(.*?)\*\*/g, '<strong>$1</strong>')
+                .replace(/\n/g, '<br>');
+
+            newsContent.innerHTML = `<p class="text-gray-300 leading-relaxed">${formattedText}</p>`;
+            
+            // Render sources
+            const groundingMetadata = candidate.groundingMetadata;
+            if (groundingMetadata && groundingMetadata.groundingAttributions) {
+                const sources = groundingMetadata.groundingAttributions
+                    .map(attr => ({ uri: attr.web?.uri, title: attr.web?.title }))
+                    .filter(source => source.uri && source.title);
+                
+                if (sources.length > 0) {
+                     newsSources.innerHTML = `<strong>Sources:</strong> ${sources.map(s => `<a href="${s.uri}" target="_blank" class="text-indigo-400 hover:underline">${s.title}</a>`).join(', ')}`;
+                } else {
+                    newsSources.innerHTML = '';
+                }
+            }
+        }
+
+        function renderLessonAndQuestion(data) {
+             const candidateText = data?.candidates?.[0]?.content?.parts?.[0]?.text;
+            if (!candidateText) {
+                lessonContent.innerHTML = `<p class="text-red-400">Could not load lesson. Please try again.</p>`;
+                questionContent.innerHTML = `<p class="text-red-400">Could not load question. Please try again.</p>`;
+                return;
+            }
+            
+            try {
+                const content = JSON.parse(candidateText);
+                
+                // Render Lesson
+                lessonContent.innerHTML = `
+                    <h3 class="text-lg font-semibold text-white mb-2">${content.lessonTitle}</h3>
+                    <p class="text-gray-300 leading-relaxed">${content.lessonBody.replace(/\n/g, '<br>')}</p>
+                `;
+                
+                // Render Question
+                let optionsHtml = content.options.map((option, index) => 
+                    `<button class="btn btn-secondary answer-btn" data-index="${index}">${option}</button>`
+                ).join('');
+
+                questionContent.innerHTML = `
+                    <p class="text-gray-200 mb-4 font-medium">${content.question}</p>
+                    <div id="options-container">${optionsHtml}</div>
+                `;
+                
+                questionFeedback.innerHTML = '';
+
+                // Add event listeners to the new buttons
+                document.querySelectorAll('.answer-btn').forEach(button => {
+                    button.addEventListener('click', (e) => checkAnswer(e, content));
+                });
+
+            } catch(e) {
+                 console.error("Error parsing lesson/question JSON:", e);
+                 lessonContent.innerHTML = `<p class="text-red-400">Error processing lesson content.</p>`;
+                 questionContent.innerHTML = `<p class="text-red-400">Error processing question content.</p>`;
+            }
+        }
+        
+        function checkAnswer(event, content) {
+            const selectedIndex = parseInt(event.target.dataset.index);
+            const correctIndex = content.answerIndex;
+            const buttons = document.querySelectorAll('.answer-btn');
+
+            buttons.forEach((btn, index) => {
+                btn.disabled = true;
+                if (index === correctIndex) {
+                    btn.classList.add('correct');
+                } else if (index === selectedIndex) {
+                    btn.classList.add('incorrect');
+                }
+            });
+
+            if (selectedIndex === correctIndex) {
+                questionFeedback.innerHTML = `<p class="text-green-400">Correct! ${content.explanation}</p>`;
+            } else {
+                questionFeedback.innerHTML = `<p class="text-red-400">Not quite. ${content.explanation}</p>`;
+            }
+        }
+
+
+        // --- Scheduling Function for Automatic Daily Updates ---
+        function scheduleMidnightUpdate() {
+            // Create a date object representing the current time in the America/New_York timezone (handles EST/EDT)
+            const nowInEST = new Date(new Date().toLocaleString("en-US", {timeZone: "America/New_York"}));
+
+            // Create a date object for the next day at midnight in the same timezone
+            const midnightInEST = new Date(nowInEST);
+            midnightInEST.setDate(midnightInEST.getDate() + 1);
+            midnightInEST.setHours(0, 0, 0, 0);
+
+            // Calculate the time difference in milliseconds until the next midnight
+            const msUntilMidnight = midnightInEST.getTime() - nowInEST.getTime();
+
+            console.log(`Scheduling next automatic update in ${Math.round(msUntilMidnight / 1000 / 60)} minutes.`);
+
+            // Set a timeout to trigger the first automatic update
+            setTimeout(() => {
+                console.log("Executing scheduled midnight update...");
+                fetchAllContent();
+                // After the first update, set an interval to run every 24 hours for subsequent days
+                setInterval(() => {
+                    console.log("Executing daily scheduled update...");
+                    fetchAllContent();
+                }, 24 * 60 * 60 * 1000); 
+            }, msUntilMidnight);
+        }
+
+        // --- Main Function to Fetch All Content ---
+        async function fetchAllContent() {
+            // setLoadingState(true) has been removed. Skeletons will show during fetch.
+
+            // Clear previous results except skeletons
+            questionFeedback.innerHTML = '';
+            newsSources.innerHTML = '';
+            showSkeleton(newsContent);
+            showSkeleton(lessonContent);
+            showSkeleton(questionContent);
+
+            // Fetch News (with grounding)
+            const newsSystemPrompt = "You are a science journalist specializing in astronomy. Provide a concise, engaging summary of the most significant recent news in space exploration and astrophysics. Focus on 2-3 key stories. Format with newlines.";
+            const newsUserQuery = "What is the latest top news in astronomy and space exploration?";
+            const newsPromise = callGemini(newsSystemPrompt, newsUserQuery, true);
+
+            // Fetch Lesson and Question (structured JSON)
+            const lessonSystemPrompt = "You are an astrophysics educator creating daily micro-learning content. Generate a beginner-friendly lesson and a multiple-choice question based on it. The lesson should be a single paragraph, easily readable in under 5 minutes. The question should test understanding of the lesson. Ensure options are distinct.";
+            const lessonUserQuery = "Generate today's beginner astrophysics mini-lesson about a random fundamental topic (e.g., black holes, nebula, types of stars, redshift, etc.). Provide a title, the lesson body, a multiple-choice question, four options, the index of the correct answer, and a brief explanation for the answer.";
+            const lessonPromise = callGemini(lessonSystemPrompt, lessonUserQuery, false);
+
+            const [newsResult, lessonResult] = await Promise.all([newsPromise, lessonPromise]);
+            
+            renderNews(newsResult);
+
+            renderLessonAndQuestion(lessonResult);
+
+            // setLoadingState(false) has been removed.
+        }
+        
+        // The event listener for the refresh button has been removed.
+
+        // Initial load on page open, and schedule the first automatic update for midnight.
+        window.addEventListener('load', () => {
+            fetchAllContent();
+
