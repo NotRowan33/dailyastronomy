@@ -200,35 +200,35 @@
             const maxRetries = 3;
             let delay = 1000; // 1 second initial delay
 
+            // Base payload
             const payload = {
                 contents: [{ parts: [{ text: userQuery }] }],
                 systemInstruction: {
                     parts: [{ text: systemPrompt }]
-                },
-                generationConfig: {
-                    responseMimeType: useGrounding ? null : "application/json",
                 }
             };
 
+            // Conditionally add tools for grounded search or generationConfig for structured JSON
             if (useGrounding) {
                 payload.tools = [{ "google_search": {} }];
-            }
-            
-            if (!useGrounding) {
-                 payload.generationConfig.responseSchema = {
-                    type: "OBJECT",
-                    properties: {
-                        lessonTitle: { type: "STRING" },
-                        lessonBody: { type: "STRING" },
-                        question: { type: "STRING" },
-                        options: { 
-                            type: "ARRAY",
-                            items: { type: "STRING" }
+            } else {
+                payload.generationConfig = {
+                    responseMimeType: "application/json",
+                    responseSchema: {
+                        type: "OBJECT",
+                        properties: {
+                            lessonTitle: { type: "STRING" },
+                            lessonBody: { type: "STRING" },
+                            question: { type: "STRING" },
+                            options: {
+                                type: "ARRAY",
+                                items: { type: "STRING" }
+                            },
+                            answerIndex: { type: "INTEGER" },
+                            explanation: { type: "STRING" }
                         },
-                        answerIndex: { type: "INTEGER" },
-                        explanation: { type: "STRING" }
-                    },
-                     required: ["lessonTitle", "lessonBody", "question", "options", "answerIndex", "explanation"]
+                        required: ["lessonTitle", "lessonBody", "question", "options", "answerIndex", "explanation"]
+                    }
                 };
             }
 
@@ -431,4 +431,5 @@
     </script>
 </body>
 </html>
+
 
