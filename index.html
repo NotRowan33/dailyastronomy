@@ -247,6 +247,14 @@
                     // Don't retry for client-side errors (e.g., bad request 4xx)
                     if (response.status >= 400 && response.status < 500) {
                         console.error(`API call failed with client error ${response.status}. Aborting retries.`);
+                        // Adding detailed error logging from the response body to help diagnose the issue.
+                        try {
+                            const errorBody = await response.json();
+                            console.error("API Error Details:", JSON.stringify(errorBody, null, 2));
+                        } catch(e) {
+                            const errorText = await response.text();
+                            console.error("API Error Body (not JSON):", errorText);
+                        }
                         return null;
                     }
 
@@ -431,5 +439,6 @@
     </script>
 </body>
 </html>
+
 
 
