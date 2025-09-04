@@ -196,17 +196,21 @@
         // Updated to include an automatic retry mechanism with exponential backoff for more robust API calls.
         async function callGemini(systemPrompt, userQuery, useGrounding = false) {
             const model = 'gemini-2.5-flash-preview-05-20';
-            // Removed the API key from the URL to allow the environment to handle authentication automatically.
-            const apiUrl = `https://generativelanguage.googleapis.com/v1beta/models/${model}:generateContent`;
+            // Restoring the ?key parameter to the URL as it might be required by the environment's request proxy.
+            const apiUrl = `https://generativelanguage.googleapis.com/v1beta/models/${model}:generateContent?key=${apiKey}`;
             const maxRetries = 3;
             let delay = 1000; // 1 second initial delay
 
             // Base payload
             const payload = {
                 contents: [{ parts: [{ text: userQuery }] }],
+                // The 'systemInstruction' is temporarily removed to simplify the request payload,
+                // which can help resolve authentication issues.
+                /*
                 systemInstruction: {
                     parts: [{ text: systemPrompt }]
                 }
+                */
             };
 
             // Conditionally add tools for grounded search or generationConfig for structured JSON
@@ -440,6 +444,7 @@
     </script>
 </body>
 </html>
+
 
 
 
