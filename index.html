@@ -196,7 +196,8 @@
         // Updated to include an automatic retry mechanism with exponential backoff for more robust API calls.
         async function callGemini(systemPrompt, userQuery, useGrounding = false) {
             const model = 'gemini-2.5-flash-preview-05-20';
-            const apiUrl = `https://generativelanguage.googleapis.com/v1beta/models/${model}:generateContent?key=${apiKey}`;
+            // Removed the API key from the URL to allow the environment to handle authentication automatically.
+            const apiUrl = `https://generativelanguage.googleapis.com/v1beta/models/${model}:generateContent`;
             const maxRetries = 3;
             let delay = 1000; // 1 second initial delay
 
@@ -439,6 +440,7 @@
     </script>
 </body>
 </html>
+
 
 
 
